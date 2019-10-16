@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    Hexo+GitHub搭建博客以及使用经历 |
+    
+    IIHTHAN</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-Hexo-GitHub搭建博客经历" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hexo+GitHub搭建博客以及使用经历
+    </h1>
+  
+  
+
+
+
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/31/Hexo-GitHub搭建博客经历/" class="article-date">
+  <time datetime="2019-07-31T08:35:04.916Z" itemprop="datePublished">2019-07-31</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>历经种种不易，重新又搭了一个博客算是终于可以正常使用，故在此记录一下在搭建博客和使用博客中遇到的一些问题和解决办法。<br>本文参考：<a href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html</a></p>
+<a id="more"></a>
+
+<h2 id="前期工作"><a href="#前期工作" class="headerlink" title="前期工作"></a>前期工作</h2><h3 id="1-GitHub搭建博客的好处"><a href="#1-GitHub搭建博客的好处" class="headerlink" title="1.GitHub搭建博客的好处"></a>1.GitHub搭建博客的好处</h3><blockquote>
+<p>1.全是静态文件，访问速度快；<br>  2.免费方便，不用花一分钱就可以搭建一个自由的个人博客，不需要服务器不需要后台；<br>  3.可以随意绑定自己的域名，不仔细看的话根本看不出来你的网站是基于github的；<br>  4.数据绝对安全，基于github的版本管理，想恢复到哪个历史版本都行；<br>  5.博客内容可以轻松打包、转移、发布到其它平台；<br>  等等；</p>
+</blockquote>
+<p>当然有人也说用Coding，可以使访问速度提升。</p>
+<h3 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h3><blockquote>
+<p>Github账号<br>  安装node.js、npm<br>  安装git客户端</p>
+</blockquote>
+<h2 id="GitHub搭建博客及相关配置"><a href="#GitHub搭建博客及相关配置" class="headerlink" title="GitHub搭建博客及相关配置"></a>GitHub搭建博客及相关配置</h2><h3 id="1-在GitHub上搭建仓库"><a href="#1-在GitHub上搭建仓库" class="headerlink" title="1.在GitHub上搭建仓库"></a>1.在GitHub上搭建仓库</h3><p>新建以用户名为名称的仓库（用户名.github.io）</p>
+<blockquote>
+<p>需要注意几点：<br>  1.每一个github账户最多只能创建一个这样可以直接使用域名访问的仓库。<br>  2.将来博客访问地址就是 www.用户名.github.io<br>  3.仓库创建成功可能需要过一段时间才能生效。</p>
+</blockquote>
+<h3 id="2-绑定域名（可选）"><a href="#2-绑定域名（可选）" class="headerlink" title="2.绑定域名（可选）"></a>2.绑定域名（可选）</h3><p>绑不绑域名都行，可以直接使用默认的 www.用户名.github.io 来访问。绑定域名可以使博客感觉更个性化一些。对这一块不感兴趣的可以直接跳过。</p>
+<p>注册域名的话，推荐阿里、腾讯之类的大公司，安全有保障而且新用户的优惠比较大。</p>
+<p>绑定域名分2种情况：带www和不带www的。域名配置最常见有2种方式，CNAME和A记录，CNAME填写域名，A记录填写IP，由于不带www方式只能采用A记录，所以必须先ping一下你的用户名.github.io的IP，然后到你的域名DNS设置页，将A记录指向你ping出来的IP，将CNAME指向你的用户名.github.io，这样可以保证无论是否添加www都可以访问</p>
+<h3 id="3-配置SSH-key"><a href="#3-配置SSH-key" class="headerlink" title="3.配置SSH key"></a>3.配置SSH key</h3><p>SH key提供了一种与GitHub通信的方式，通过这种方式，能够在不输入密码的情况下，将GitHub作为自己的remote端服务器，进行版本控制。</p>
+<pre><code>$ cd ~/ . ssh #检查本机已存在的ssh密钥</code></pre><p>如果提示：No such file or directory 说明是第一次使用git。</p>
+<pre><code>ssh-keygen -t rsa -c &quot;邮箱地址&quot;</code></pre><p>然后连续3次回车，最终会生成一个文件在用户目录下，打开用户目录，找到.ssh\id_rsa.pub文件，记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key 将复制的内容粘贴进key里，title填啥都可以，然后保存。</p>
+<p>之后需要测试是否成功。</p>
+<pre><code>$ ssh -T git@github.com # 注意邮箱地址不用改</code></pre><p>如果提示：Are you sure you want to continue connecting (yes/no)?<br>输入：yes<br>之后就会看：Hi XXX!You`ve successfully authenticated,but Github does not provide shell access.<br>看到这个信息说明SSH已经配置成功！<br>此时还需要配置：</p>
+<pre><code>$ git config --global user.name &quot;你的github用户名，非昵称&quot;
+$ git config --global user.email &quot;填写你的github注册邮箱&quot;</code></pre><h2 id="hexo与博客配置"><a href="#hexo与博客配置" class="headerlink" title="hexo与博客配置"></a>hexo与博客配置</h2><h3 id="1-hexo"><a href="#1-hexo" class="headerlink" title="1.hexo"></a>1.hexo</h3><p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。<br>官网： <a href="http://hexo.io" target="_blank" rel="noopener">http://hexo.io</a><br>github: <a href="https://github.com/hexojs/hexo" target="_blank" rel="noopener">https://github.com/hexojs/hexo</a></p>
+<h3 id="2-hexo特性"><a href="#2-hexo特性" class="headerlink" title="2.hexo特性"></a>2.hexo特性</h3><p>由于github pages存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以hexo所做的就是将这些md文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到github。</p>
+<h3 id="3-注意事项"><a href="#3-注意事项" class="headerlink" title="3.注意事项"></a>3.注意事项</h3><blockquote>
+<p>开始前先说几点注意事项<br>    1.很多命令既可以用Windows的cmd来完成，也可以使用git bash来完成，但是部分命令会有一些问题，为避免不必要的问题，建议全部使用git bash来执行；<br>    2.hexo不同版本差别比较大，网上很多文章的配置信息都是基于2.x的，所以注意不要被误导；<br>    3.hexo有2种_config.yml文件，一个是根目录下的全局的_config.yml，一个是各个theme下的；</p>
+</blockquote>
+<h3 id="4-安装hexo"><a href="#4-安装hexo" class="headerlink" title="4.安装hexo"></a>4.安装hexo</h3><pre><code>$ npm install -g hexo</code></pre><h3 id="5-初始化"><a href="#5-初始化" class="headerlink" title="5.初始化"></a>5.初始化</h3><p>在电脑的某个地方新建一个名为hexo的文件夹（名字可以随便取，最好不要有中文），由于这个文件夹将来就作为你存放代码的地方，所以最好不要随便放，建议不要放在C盘。</p>
+<pre><code>$ cd （hexo文件夹的路径）
+$ hexo init</code></pre><p>hexo会自动下载一些文件到这个目录，包括node_modules。</p>
+<p>执行</p>
+<pre><code>$ hexo g #生成
+$ hexo s #启动本地预览 打开浏览器访问 http://localhost:4000 即可看到内容</code></pre><p>执行完这两条命令后,hexo就会在public文件夹生成相关html文件，这些文件会在之后提交到github。<br>若本地预览加载不出来，一般是因为端口占用的缘故。</p>
+<h3 id="6-修改主题"><a href="#6-修改主题" class="headerlink" title="6.修改主题"></a>6.修改主题</h3><p>第一次初始化的时候hexo已经帮我们写了一篇名为 Hello World 的文章，为了个性化这里我们可以选用自己喜欢的主题替换。<br>在这里可以挑选自己喜欢的主题：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a><br>选好自己喜欢的主题后，每个主题应该都有自己对应的说明和使用方法，这里就不再赘述。</p>
+<blockquote>
+<p>注意事项：<br>    1.修改完主题需要执行 ‘hexo g’ 来重新生成<br>    2.如果遇到奇怪的问题，可以先执行 hexo clean 来清理一下public的内容，然后再重新生成和预览。</p>
+</blockquote>
+<h3 id="7-上传前的注意事项"><a href="#7-上传前的注意事项" class="headerlink" title="7.上传前的注意事项"></a>7.上传前的注意事项</h3><p>因为从hexo提交代码时会把你以前的所有代码都删掉，所以在上传代码到github之前，一定要记得先把你以前所有代码下载下来（虽然github有版本管理，但备份一下总是好的）。</p>
+<h3 id="8-上传到github"><a href="#8-上传到github" class="headerlink" title="8.上传到github"></a>8.上传到github</h3><p>首先，确定SSH key是配置好的<br>其次，还需要安装一个插件：</p>
+<pre><code>npm install hexo-deployer-git --save</code></pre><p>然后配置_config.yml中有关deploy的部分：</p>
+<pre><code>deploy:
+    type: git
+    repository: git@github.com:liuxianan/liuxianan.github.io.git
+    branch: master</code></pre><p>然后用git bash，输入</p>
+<pre><code>hexo d</code></pre><p>就会将本次有改动的代码全部提交，没有改动的不会。</p>
+<h3 id="9-保留CNAME、README-md等文件"><a href="#9-保留CNAME、README-md等文件" class="headerlink" title="9.保留CNAME、README.md等文件"></a>9.保留CNAME、README.md等文件</h3><p>提交之后会发现以前其它代码都没了，此时不要慌，一些非md文件可以把他们放到source文件夹下，这里的所有文件都会原样复制（除了md文件）到public目录的。<br>由于hexo默认会把所有md文件都转换成html，包括README.md，所有需要每次生成之后、上传之前，手动将README.md复制到public目录，并删除README.html。</p>
+<h3 id="10-特别注意事项"><a href="#10-特别注意事项" class="headerlink" title="10.特别注意事项"></a>10.特别注意事项</h3><p>_config.yml里面都是一些全局配置，这里就不作详细介绍了。<br>需要特别注意的地方是，冒号后面必须有一个空格，否则可能会出问题！！！</p>
+<h2 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h2><h3 id="写博客的工具"><a href="#写博客的工具" class="headerlink" title="写博客的工具"></a>写博客的工具</h3><p>写博客的工具和插件都挺多的，之前还试了很多，大家也可以去找一找，有一些还是挺好用的。<br>我自己用的是Visual Studio Code。</p>
+<h3 id="写博客-1"><a href="#写博客-1" class="headerlink" title="写博客"></a>写博客</h3><p>到hexo根目录下，执行：</p>
+<pre><code>hexo new &apos;文章名&apos;</code></pre><p>hexo会在_posts下生成相关md文件<br>只需要打开这个文件就可以写内容了<br>一般完整格式如下：<br>    —<br>    title: postName #文章页面上的显示名称，一般是中文<br>    date: 2013-12-02 15:30:16 #文章生成时间，一般不改，当然也可以任意修改<br>    categories: 默认分类 #分类<br>    tags: [tag1,tag2,tag3] #文章标签，可空，多标签请用格式，注意:后面有个空格<br>    description: 附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面<br>    —</p>
+<pre><code>以下是正文</code></pre><p>具体的Markdown语句可以参考你选择的主题的说明。</p>
+<p>写完以后只要执行 ‘hexo d’ 就可以了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/31/Hexo-GitHub搭建博客经历/" data-id="ck1t20tol0003r8u4h2nkn4lx"
+         class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/2019/07/31/XCTF-攻防世界-CRYPTO-新手区-WP/" class="article-nav-link">
+        <strong class="article-nav-caption">Newer posts</strong>
+        <div class="article-nav-title">
+          
+            XCTF-攻防世界-CRYPTO-新手区 WP
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/07/30/逆向破解——写在开头/" class="article-nav-link">
+        <strong class="article-nav-caption">Olde posts</strong>
+        <div class="article-nav-title">逆向破解——写在开头</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+    <li><i class="fe fe-bookmark"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2019 IIHTHAN</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/hexo.svg" alt="IIHTHAN"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">Home</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">Archives</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/gallery">Gallery</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">About</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+        <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+          <i class="fe fe-feed"></i>
+        </a>
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/snap.svg-min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
