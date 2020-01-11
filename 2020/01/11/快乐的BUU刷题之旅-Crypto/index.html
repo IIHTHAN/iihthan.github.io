@@ -67,8 +67,8 @@
         <p>快乐的BUU刷题之旅开始了，持续更新中!能自己写的脚本就自己写了，顺便练练python，写得不好的地方，请大家见谅。</p>
 <a id="more"></a>
 
-<h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p>题目描述：e00cf25ad42683b3df678c61f42c6bda<br>工具：<a href="https://www.cmd5.com/" target="_blank" rel="noopener">https://www.cmd5.com/</a><br>解法及思路：<br>0.直接cmd5跑一下<br>1.flag{admin1}</p>
-<h3 id="看我回旋踢"><a href="#看我回旋踢" class="headerlink" title="看我回旋踢"></a>看我回旋踢</h3><p>题目描述：synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}<br>工具：<a href="https://www.cmd5.com/" target="_blank" rel="noopener">https://www.cmd5.com/</a><br>解法及思路：<br>0.根据题目提示和经验就知道是rot13<br>1.脚本：</p>
+<h2 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h2><p>题目描述：e00cf25ad42683b3df678c61f42c6bda<br>工具：<a href="https://www.cmd5.com/" target="_blank" rel="noopener">https://www.cmd5.com/</a><br>解法及思路：<br>0.直接cmd5跑一下<br>1.flag{admin1}</p>
+<h2 id="看我回旋踢"><a href="#看我回旋踢" class="headerlink" title="看我回旋踢"></a>看我回旋踢</h2><p>题目描述：synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}<br>工具：PyCharm<br>解法及思路：<br>0.根据题目提示和经验就知道是rot13<br>1.脚本：</p>
 <pre><code>import string
 
 upperletters=string.ascii_uppercase
@@ -100,11 +100,47 @@ for ch in c:
         m.append(ch)
 m=&apos;&apos;.join(m)
 print(m)</code></pre><p>2.flag{5cd1004d-86a5-46d8-b720-beb5ba0417e1}</p>
+<h2 id="Url编码"><a href="#Url编码" class="headerlink" title="Url编码"></a>Url编码</h2><p>题目描述：%66%6c%61%67%7b%61%6e%64%20%31%3d%31%7d<br>工具：PyCharm<br>解法及思路：<br>0.根据题目和字符串特征知道是url编码<br>1.脚本：</p>
+<pre><code>from urllib import parse
+from urllib import request
+
+c=&quot;%66%6c%61%67%7b%61%6e%64%20%31%3d%31%7d&quot;
+m=parse.unquote(c)
+print(m)</code></pre><p>2.flag{and 1=1}</p>
+<h2 id="一眼就解密"><a href="#一眼就解密" class="headerlink" title="一眼就解密"></a>一眼就解密</h2><p>题目描述：下面的字符串解密后便能获得flag：ZmxhZ3tUSEVfRkxBR19PRl9USElTX1NUUklOR30=<br>工具：PyCharm<br>解法及思路：<br>0.根据字符串特征猜测为Base64编码<br>1.脚本：</p>
+<pre><code>import base64
+c=&quot;ZmxhZ3tUSEVfRkxBR19PRl9USElTX1NUUklOR30=&quot;
+m=base64.b64decode(c.encode(&apos;utf-8&apos;))
+print(str(m,&apos;utf-8&apos;))</code></pre><p>2.flag{THE_FLAG_OF_THIS_STRING}</p>
+<h2 id="摩丝"><a href="#摩丝" class="headerlink" title="摩丝"></a>摩丝</h2><p>题目描述：.. .-.. — …- . -.– — ..-<br>工具：PyCharm<br>解法及思路：<br>0.根据字符串特征和题目知道为Morse code<br>1.脚本：</p>
+<pre><code>c=&quot;.. .-.. --- ...- . -.-- --- ..-&quot;
+s = c.split(&quot; &quot;)
+m=[]
+dict = {&apos;.-&apos;: &apos;A&apos;,&apos;-...&apos;: &apos;B&apos;,&apos;-.-.&apos;: &apos;C&apos;,&apos;-..&apos;:&apos;D&apos;,&apos;.&apos;:&apos;E&apos;,&apos;..-.&apos;:&apos;F&apos;,&apos;--.&apos;: &apos;G&apos;,&apos;....&apos;: &apos;H&apos;,&apos;..&apos;: &apos;I&apos;,&apos;.---&apos;:&apos;J&apos;,&apos;-.-&apos;: &apos;K&apos;,&apos;.-..&apos;: &apos;L&apos;,&apos;--&apos;: &apos;M&apos;,&apos;-.&apos;: &apos;N&apos;,&apos;---&apos;: &apos;O&apos;,&apos;.--.&apos;: &apos;P&apos;,&apos;--.-&apos;: &apos;Q&apos;,&apos;.-.&apos;: &apos;R&apos;,&apos;...&apos;: &apos;S&apos;,&apos;-&apos;: &apos;T&apos;,&apos;..-&apos;: &apos;U&apos;,&apos;...-&apos;: &apos;V&apos;,&apos;.--&apos;: &apos;W&apos;,&apos;-..-&apos;: &apos;X&apos;,&apos;-.--&apos;: &apos;Y&apos;,&apos;--..&apos;: &apos;Z&apos;,&apos;.----&apos;: &apos;1&apos;,&apos;..---&apos;: &apos;2&apos;,&apos;...--&apos;: &apos;3&apos;,&apos;....-&apos;: &apos;4&apos;,&apos;.....&apos;: &apos;5&apos;,&apos;-....&apos;: &apos;6&apos;,&apos;--...&apos;: &apos;7&apos;,&apos;---..&apos;: &apos;8&apos;,&apos;----.&apos;: &apos;9&apos;,&apos;-----&apos;: &apos;0&apos;,&apos;..--..&apos;: &apos;?&apos;,&apos;-..-.&apos;: &apos;/&apos;,&apos;-.--.-&apos;: &apos;()&apos;,&apos;-....-&apos;: &apos;-&apos;,&apos;.-.-.-&apos;: &apos;.&apos;}
+for item in s:
+    m.append(dict[item])
+m=&apos;&apos;.join(m)
+print(m)</code></pre><p>2.flag{ILOVEYOU}</p>
+<h2 id="变异凯撒"><a href="#变异凯撒" class="headerlink" title="变异凯撒"></a>变异凯撒</h2><p>题目描述：加密密文：afZ_r9VYfScOeO_UL^RWUc<br>工具：PyCharm<br>解法及思路：<br>0.不难发现一下规律：<br>f(102)-a(97)    ASCII差5<br>l(108)-f(102)   ASCII差6<br>……<br>加密方法就一目了然了。<br>1.脚本：</p>
+<pre><code>c=&quot;afZ_r9VYfScOeO_UL^RWUc&quot;
+m=[]
+cnt=5
+for i in c:
+    m.append(chr(ord(i) + cnt))
+    cnt = cnt + 1;
+m=&apos;&apos;.join(m);
+print(m)</code></pre><p>2.flag{Caesar_variation}</p>
+<h2 id="Quoted-printable"><a href="#Quoted-printable" class="headerlink" title="Quoted-printable"></a>Quoted-printable</h2><p>题目描述：=E9=82=A3=E4=BD=A0=E4=B9=9F=E5=BE=88=E6=A3=92=E5=93=A6<br>工具：PyCharm || <a href="http://www.mxcz.net/tools/quotedprintable.aspx" target="_blank" rel="noopener">http://www.mxcz.net/tools/quotedprintable.aspx</a><br>解法及思路：<br>0.Quoted-printable 可译为“可打印字符引用编码”、“使用可打印字符的编码”，具体的可以去看相关的博客介绍<br>1.脚本</p>
+<pre><code>import quopri
+c=&quot;=E9=82=A3=E4=BD=A0=E4=B9=9F=E5=BE=88=E6=A3=92=E5=93=A6&quot;
+m=quopri.decodestring(c)
+print(m.decode())</code></pre><p>2.flag{那你也很棒哦}</p>
+<h2 id="password"><a href="#password" class="headerlink" title="password"></a>password</h2><p>题目描述：姓名：张三  生日：19900315  key格式为key{xxxxxxxxxx}<br>工具：社工思想<br>解法及思路：<br>0.很简单的社工题，根据身份信息猜测弱口令，但是这道题的格式不是key{}而是flag{}<br>1.flag{zs19900315}</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/11/快乐的BUU刷题之旅-Crypto/" data-id="ck58zewud0003kgu4ewc5yts1"
+      <a data-url="http://yoursite.com/2020/01/11/快乐的BUU刷题之旅-Crypto/" data-id="ck5924cgc0003s4u4kuclpjqc"
          class="article-share-link">Share</a>
       
     </footer>
