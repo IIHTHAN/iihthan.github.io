@@ -68,8 +68,15 @@
 <a id="more"></a>
 
 <h3 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h3><p>题目描述：e00cf25ad42683b3df678c61f42c6bda<br>工具：<a href="https://www.cmd5.com/" target="_blank" rel="noopener">https://www.cmd5.com/</a><br>解法及思路：<br>0.直接cmd5跑一下<br>1.flag{admin1}</p>
-<h3 id="看我回旋踢"><a href="#看我回旋踢" class="headerlink" title="看我回旋踢"></a>看我回旋踢</h3><p>题目描述：synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}<br>工具：<a href="https://www.cmd5.com/" target="_blank" rel="noopener">https://www.cmd5.com/</a><br>解法及思路：<br>0.根据题目提示和经验就知道是rot13<br>1.脚本：<br>    import string<br>    upperletters=string.ascii_uppercase<br>    lowerletters=string.ascii_lowercase<br>    upperdict={}<br>    lowerdict={}</p>
-<pre><code>c=&quot;synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}&quot;
+<h3 id="看我回旋踢"><a href="#看我回旋踢" class="headerlink" title="看我回旋踢"></a>看我回旋踢</h3><p>题目描述：synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}<br>工具：<a href="https://www.cmd5.com/" target="_blank" rel="noopener">https://www.cmd5.com/</a><br>解法及思路：<br>0.根据题目提示和经验就知道是rot13<br>1.脚本：</p>
+<pre><code>import string
+
+upperletters=string.ascii_uppercase
+lowerletters=string.ascii_lowercase
+upperdict={}
+lowerdict={}
+
+c=&quot;synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}&quot;
 m=[]
 
 for i in range(0,len(lowerletters)):
@@ -97,7 +104,7 @@ print(m)</code></pre><p>2.flag{5cd1004d-86a5-46d8-b720-beb5ba0417e1}</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/11/快乐的BUU刷题之旅-Crypto/" data-id="ck58zeiud0005gwu4r5ypgwjy"
+      <a data-url="http://yoursite.com/2020/01/11/快乐的BUU刷题之旅-Crypto/" data-id="ck58zewud0003kgu4ewc5yts1"
          class="article-share-link">Share</a>
       
     </footer>
