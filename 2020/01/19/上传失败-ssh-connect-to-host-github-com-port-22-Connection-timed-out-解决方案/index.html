@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>
-    归档: 2020 |
+    上传失败 ssh:connect to host github.com port 22:Connection timed out 解决方案 |
     
     IIHTHAN</title>
   
@@ -26,128 +26,100 @@
 <script src="https://iihthan.github.io/live2d/autoload.js"></script>
 <main class="content">
   <section class="outer">
-  <article class="articles">
+  <article id="post-上传失败-ssh-connect-to-host-github-com-port-22-Connection-timed-out-解决方案" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
     
-    <h1 class="page-type-title">2020</h1>
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      上传失败 ssh:connect to host github.com port 22:Connection timed out 解决方案
+    </h1>
+  
+  
+
+
+
+
+      </header>
+    
 
     
-    
-    
-      
-      
-        
-        
-    <div class="archives-wrap">
-      <div class="archive-year-wrap">
-        <a href="/archives/2020" class="archive-year">2020</a>
-      </div>
-      <div class="archives">
-        
-        <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/01/19/上传失败-ssh-connect-to-host-github-com-port-22-Connection-timed-out-解决方案/" class="archive-article-date">
-  <time datetime="2020-01-19T02:15:34.000Z" itemprop="datePublished">01/19</time>
+      <div class="article-meta">
+        <a href="/2020/01/19/上传失败-ssh-connect-to-host-github-com-port-22-Connection-timed-out-解决方案/" class="article-date">
+  <time datetime="2020-01-19T02:15:34.000Z" itemprop="datePublished">2020-01-19</time>
 </a>
-      
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/19/上传失败-ssh-connect-to-host-github-com-port-22-Connection-timed-out-解决方案/">上传失败 ssh:connect to host github.com port 22:Connection timed out 解决方案</a>
-    </h2>
-  
-  
-
-
-
-
-    </header>
-    
-    
-  </div>
-</article>
-        
-      
-      
-        <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/01/17/寒假测试赛/" class="archive-article-date">
-  <time datetime="2020-01-17T05:17:59.000Z" itemprop="datePublished">01/17</time>
-</a>
-      
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/17/寒假测试赛/">寒假测试赛</a>
-    </h2>
-  
-  
-
-
-
-
-    </header>
-    
-    
-  </div>
-</article>
-        
-      
-      
-        <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/01/11/快乐的BUU刷题之旅-Crypto/" class="archive-article-date">
-  <time datetime="2020-01-11T01:31:13.000Z" itemprop="datePublished">01/11</time>
-</a>
-      
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/11/快乐的BUU刷题之旅-Crypto/">快乐的BUU刷题之旅-Crypto</a>
-    </h2>
-  
-  
-
-
-
-
-    </header>
-    
-    
-  </div>
-</article>
-        
-      
-      
-        <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/01/11/改过自新-重新做人！/" class="archive-article-date">
-  <time datetime="2020-01-11T01:25:24.000Z" itemprop="datePublished">01/11</time>
-</a>
-      
-  
-    <h2 itemprop="name">
-      <a class="archive-article-title" href="/2020/01/11/改过自新-重新做人！/">改过自新 重新做人！</a>
-    </h2>
-  
-  
-
-
-
-
-    </header>
-    
-    
-  </div>
-</article>
-        
         
       </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <p>因ssh连接超时导致更新博客失败的解决方案</p>
+<a id="more"></a>
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>hexo -d 后报错如下：</p>
+<blockquote>
+<p>ssh: connect to host github.com port 22: Connection timed out<br>  fatal: Could not read from remote repository.<br>  Please make sure you have the correct access rights<br>  and the repository exists.</p>
+</blockquote>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>0.先检查SSH连接是否成功，输入</p>
+<blockquote>
+<p>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a><br>若报错<br>ssh: connect to host github.com port 22: Connection timed out<br>则采取下列方法<br>1.打开存放ssh的目录</p>
+</blockquote>
+<pre><code>cd ~/.ssh
+ls</code></pre><p>查看是否存在 id_rsa   id_rsa.pun  known_hosts 三个文件<br>若存在，则</p>
+<pre><code>vim comfig #新建文件
+
+Host github.com
+User YourEmail@163.com #User 后围殴github的账号名称
+Hostname ssh.github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+Port 443
+
+#按esc后输入
+:wq  #保存并退出</code></pre><p>如果不习惯用命令行，也可以再cd ~/.ssh后输入pwd查看路径，从我的电脑按照相关路径打开后新建并输入同样的内容并保存</p>
+<p>2.再次执行 ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> 命令<br>出现提示输入yes即可</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/qq_42146613/article/details/82772734" target="_blank" rel="noopener">https://blog.csdn.net/qq_42146613/article/details/82772734</a></p>
+
+      
     </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/19/上传失败-ssh-connect-to-host-github-com-port-22-Connection-timed-out-解决方案/" data-id="ck5kewt2m0004agu4e2ml72jy"
+         class="article-share-link">Share</a>
+      
+    </footer>
+
+  </div>
+
+  
     
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/01/17/寒假测试赛/" class="article-nav-link">
+        <strong class="article-nav-caption">Olde posts</strong>
+        <div class="article-nav-title">寒假测试赛</div>
+      </a>
+    
+  </nav>
+
+
   
 
   
+    
+  
+
+</article>
+
+
+
 </section>
   <footer class="footer">
   <div class="outer">
