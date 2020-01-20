@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Windows下使用nc指令]]></title>
+    <url>%2F2020%2F01%2F20%2FWindows%E4%B8%8B%E4%BD%BF%E7%94%A8nc%E6%8C%87%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[当你的虚拟机炸了，没有Linux系统时如何使用nc指令？ 下载https://eternallybored.org/misc/netcat/ 安装在退出安全软件的前提下，解压下载的压缩包，将里面的nc.exe文件ctrl+c &amp; ctrl+v 到C:\windows\system32目录下即可。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[上传失败 ssh:connect to host github.com port 22:Connection timed out 解决方案]]></title>
     <url>%2F2020%2F01%2F19%2F%E4%B8%8A%E4%BC%A0%E5%A4%B1%E8%B4%A5-ssh-connect-to-host-github-com-port-22-Connection-timed-out-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%2F</url>
-    <content type="text"><![CDATA[因ssh连接超时导致更新博客失败的解决方案 问题描述hexo -d 后报错如下： ssh: connect to host github.com port 22: Connection timed out fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 解决方案0.先检查SSH连接是否成功，输入 ssh -T git@github.com若报错ssh: connect to host github.com port 22: Connection timed out则采取下列方法1.打开存放ssh的目录 cd ~/.ssh ls查看是否存在 id_rsa id_rsa.pun known_hosts 三个文件若存在，则 vim comfig #新建文件 Host github.com User YourEmail@163.com #User 后围殴github的账号名称 Hostname ssh.github.com PreferredAuthentications publickey IdentityFile ~/.ssh/id_rsa Port 443 #按esc后输入 :wq #保存并退出如果不习惯用命令行，也可以再cd ~/.ssh后输入pwd查看路径，从我的电脑按照相关路径打开后新建并输入同样的内容并保存 2.再次执行 ssh -T git@github.com 命令出现提示输入yes即可 参考https://blog.csdn.net/qq_42146613/article/details/82772734]]></content>
+    <content type="text"><![CDATA[因ssh连接超时导致更新博客失败的解决方案 问题描述hexo -d 后报错如下： ssh: connect to host github.com port 22: Connection timed out fatal: Could not read from remote repository. Please make sure you have the correct access rights and the repository exists. 解决方案0.先检查SSH连接是否成功，输入 ssh -T git@github.com若报错ssh: connect to host github.com port 22: Connection timed out则采取下列方法1.打开存放ssh的目录 cd ~/.ssh ls查看是否存在 id_rsa id_rsa.pun known_hosts 三个文件若存在，则 vim config #新建文件 Host github.com User YourEmail@163.com #User 后为github的账号名称 Hostname ssh.github.com PreferredAuthentications publickey IdentityFile ~/.ssh/id_rsa Port 443 #按esc后输入 :wq #保存并退出如果不习惯用命令行，也可以再cd ~/.ssh后输入pwd查看路径，从我的电脑按照相关路径打开后新建并输入同样的内容并保存 2.再次执行 ssh -T git@github.com 命令出现提示输入yes即可 参考https://blog.csdn.net/qq_42146613/article/details/82772734]]></content>
   </entry>
   <entry>
     <title><![CDATA[寒假测试赛]]></title>
